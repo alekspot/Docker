@@ -1,0 +1,19 @@
+docker images
+docker build -t test .  // билд образа
+docker rmi test // удалить образ
+docker ps -a -q // показать только id контейнеровdocker ps
+docker ps       // показать запущенные контейнеры
+docker ps -a                     // показать все контейнеры
+docker run --name newName mytest // создать копию контейнера на основе существующего образа и запустить
+docker run --name newName -d mytest // создать контейнер на основе образа и запустить в фоне
+docker run --name newName -d --rm mytest // создать контейнер на основе образа и запустить в фоне и удалить при остановке
+docker stop newName
+docker rm 63dfc17a87c7 // удалить контейнер
+docker ps -a -q // показать только id контейнеров
+docker rm $(docker ps -a -q) // удалить высе контейнеры
+docker run --name newName -d --rm test_flask -p 8080:8080   // пробросить порт
+
+docker run --name newName -d --rm -p 8080:8080 -v /home/a/Desktop/docker/data:/usr/src/app/data test_flask //монтирование локальных папок в контейнер
+docker volume create web_volume // создать volume(монтируемую папку)
+docker volume rm web_volume // удалить volume
+docker run --name newName -d --rm -p 8080:8080 -v web_volume:/usr/src/app/data web //монтирование локальных папок в контейнер
